@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or the archived simulation data, please cite
+  it as below.
+type: software
+authors:
+  - family-names: Xu
+    given-names: Ruizhe
+title: 'Somatic compartment-network simulations of module-integrity erosion'
+version: 1.0.0
+date-released: '2026-10-31'
+license: MIT
+keywords:
+  - individual-based model
+  - somatic evolution
+  - population genetics
+  - fungal compartment networks
+  - module integrity
