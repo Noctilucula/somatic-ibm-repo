@@ -1,10 +1,16 @@
 % ============================================================================
 % Figure legend for Fig_SomaticIBM_main (svg / pdf / png).
-% Final manuscript numbering: Fig. 2. Model definition, update rules and
-% scope statements are documented in this repository (README.md and
-% data/README.md) rather than in the legend. Format follows the manuscript
-% convention ("Fig. 2 | Title." followed by lowercase bold panel letters
-% a, b, c, ...).
+% Final manuscript numbering: Fig. 2. Synced with the condensed manuscript
+% legend (narrative form): the two calibration references are glossed in
+% place, every visible legend element is described, and the parameter
+% values needed to reproduce the panels are carried inline. The earlier
+% full-detail legend (ensemble burdens, Wilson intervals, per-architecture
+% medians, censoring fractions, both time bases) remains in the repository
+% history. Model definition, update rules and scope statements are
+% documented in README.md and data/README.md rather than in the legend.
+% Format follows the manuscript convention ("Fig. 2 | Title." followed by
+% lowercase bold panel letters a, b, c, ...). British spelling, matching
+% the Supplementary Fig. S1 and Fig. 3 legends.
 % ============================================================================
 
 \noindent\textbf{Fig.~2\,|\,The somatic channel of module-integrity
@@ -15,76 +21,80 @@ core-gene loss.}
 \noindent\textbf{a}, Model schematic (illustrative dynamics, not
 simulation output). The somatic body is idealised as a $12\times12$
 lattice of compartments, each holding $K=8$ nuclei
-($N_{\mathrm{tot}}=1{,}152$); three compartments are drawn as rows, and
-shading gives the local frequency of nuclei that have irreversibly lost
-a bottleneck core gene. Blue dots mark loss-of-function mutation of the
-core gene ($\mu=3\times10^{-4}$ per nucleus per nuclear generation);
-yellow dots mark nuclear migration through hyphal fusion. Four
-architectures are used throughout: C0, fragmented (no fusion); C1, local
-fusion between neighbouring compartments (exchange probability
-$m_{\mathrm{loc}}=0.08$); C2, local fusion plus rare long-range
-anastomosis ($m_{\mathrm{glob}}=0.03$); and C3, strong long-range
-fusion ($m_{\mathrm{glob}}=0.25$).
+($N_{\mathrm{tot}}=1{,}152$; mutation rate $\mu=3\times10^{-4}$ per
+nucleus per nuclear generation). Shading indicates the local frequency of
+nuclei that have irreversibly lost a bottleneck core gene. Blue dots mark
+loss-of-function mutations; yellow dots mark nuclear migration through
+hyphal fusion. Four architectures are used throughout: C0, fragmented
+(no fusion); C1, local fusion between neighbouring compartments
+(exchange probability $m_{\mathrm{loc}}=0.08$); C2, local fusion plus
+rare long-range anastomosis ($m_{\mathrm{glob}}=0.03$); and C3, strong
+long-range fusion ($m_{\mathrm{glob}}=0.25$).
 
 \smallskip
 \noindent\textbf{b}, Spatial organisation of core-gene loss at a common
-checkpoint ($t=1{,}800$ nuclear generations; $S=0.004$,
-$\mu=3\times10^{-4}$, $R=40$ replicates per level), when the
-ensemble-mean burden is $\bar{x}=0.31$, $0.42$, $0.42$ and $0.42$ for
-C0--C3. Top: compartment grids of the replicate whose whole-body mutant
-frequency is closest to the ensemble mean (replicate burdens
-$\bar{x}=0.27$--$0.46$); colour bar: mutant fraction per compartment.
-Bottom: sectoring coefficient $F=\mathrm{Var}(x_c)/[\bar{x}(1-\bar{x})]$
-of every polymorphic replicate at the same checkpoint (dots;
-$0.02<\bar{x}<0.98$; $n=19$, $22$, $21$, $20$ of $40$; horizontal bars:
-medians). Median sectoring declines monotonically with connectivity:
-$F=1.00$, $0.75$, $0.65$, $0.29$ for C0--C3, consistent with the
-structural sectoring of the independent neutral calibrations
-($F_{\mathrm{struct}}=1.00$, $0.76$, $0.63$, $0.30$); because $F$ is
-normalised by $\bar{x}(1-\bar{x})$, the comparison is insensitive to
-the residual burden differences between architectures. Dashed line:
-$F=1/K=0.125$. The full time course of the grids is shown in
+checkpoint ($t=1{,}800$ nuclear generations; $S=0.004$; $R=40$
+replicates per level). Top: representative compartment grids for
+C0--C3 (the replicate closest to the ensemble-mean burden; colour bar:
+mutant fraction per compartment). Under fragmentation, the burden is
+carried by all-or-nothing sectors, whereas under strong long-range
+fusion, most compartments carry intermediate mutant counts. Bottom:
+sectoring coefficient $F=\mathrm{Var}(x_c)/[\bar{x}(1-\bar{x})]$ of
+every polymorphic replicate at the same checkpoint (dots; horizontal
+bars: medians; dashed line: $F=1/K$, the expectation under independent
+compartment sampling). Median sectoring declines monotonically with
+increasing connectivity (C0 to C3), consistent with the structural
+sectoring of the independent neutral calibrations of the same
+architectures ($F_{\mathrm{struct}}=1.00$, $0.76$, $0.63$, $0.30$).
+The confined-sector versus diffuse-erosion signature sketched in panel a
+is what the simulations produce; the full time course is shown in
 Supplementary Fig.~1.
 
 \smallskip
 \noindent\textbf{c}, Fixation probability of a single mutant nucleus
 versus the deleterious effect of core-gene loss, $S$ (points:
-$R=50{,}000$ replicates per level and value of $S$, conditional on
-absorption within $T_{\max}=40{,}000$ generations; error bars: 95\%
-Wilson score intervals; downward triangles: no fixation observed,
-plotted at the detection limit $2/R=4\times10^{-5}$, which occurs for
-C0--C2 at $S=0.05$ and $0.1$ and for C3 at $S=0.1$). Dashed grey line:
-neutral expectation, $1/N_{\mathrm{tot}}\approx8.7\times10^{-4}$.
-Dotted grey line: classical well-mixed prediction with census size
-$N_{\mathrm{tot}}$ and unattenuated selection. Solid lines: rescaled
-diffusion reference with effective selection
-$s_{\mathrm{eff}}=-\gamma\,F_{\mathrm{eff}}\,S$ ($\gamma=0.25$ per
-nuclear generation) and variance-effective size $N_{e,\mathrm{var}}$
-($F_{\mathrm{eff}}=0.55,\,0.41,\,0.43,\,0.22$
-and $N_{e,\mathrm{var}}=553,\,550,\,508,\,480$ for C0--C3).
+$R=50{,}000$ replicates per level and value of $S$; error bars: 95\%
+Wilson score intervals; downward triangles: no fixation observed within
+$T_{\max}=40{,}000$ generations, plotted at the detection limit $2/R$).
+Dashed grey line: neutral expectation. Dotted grey line: classical
+well-mixed prediction (census size, unattenuated selection). Solid
+lines: rescaled diffusion reference --- the well-mixed diffusion
+prediction (Kimura, 1962) evaluated with effective selection
+$s_{\mathrm{eff}}=-\gamma F_{\mathrm{eff}}S$ ($\gamma=0.25$ per nuclear
+generation, the compartment turnover rate; $F_{\mathrm{eff}}$, the
+architecture's selection-attenuation factor) and variance-effective size
+$N_{e,\mathrm{var}}$, both taken from the independent calibration runs
+(no fitted parameters). At a moderate deleterious effect, mixing raises
+the fixation probability of the same deleterious loss roughly
+five-fold (C3 versus C0).
 
 \smallskip
 \noindent\textbf{d}, Median time to complete core-gene loss under
-recurrent mutation ($\mu=3\times10^{-4}$, $R=200$ replicates per point)
-for three selective regimes. Costly core ($S=0.02$, $w=0$; blue
-circles): $8{,}146$, $6{,}756$, $7{,}470$ and $3{,}919$ generations for
-C0--C3, with $22.5\%$ (C0), $6.5\%$ (C1) and $2.5\%$ (C2) of replicates
-censored at $T_{\max}=30{,}000$ and none for C3. Short-circuited
-selection ($S=0$, $w=0$; grey squares): $2{,}855$, $3{,}436$, $3{,}415$,
-$3{,}347$. Selfish saving ($S=0$, $w=0.02$; red triangles): $2{,}905$,
-$1{,}293$, $971$, $591$. Dashed line: neutral clock,
-$1/\mu\approx3{,}333$ generations.
+recurrent mutation ($R=200$ replicates per point) for three selective
+regimes: costly core ($S=0.02$; blue circles), short-circuited
+selection ($S=0$; grey squares), and selfish saving (red triangles:
+loss carries a within-compartment growth advantage, $w=0.02$). Strong
+mixing accelerates erosion, particularly when the loss carries any
+within-compartment advantage (roughly five-fold relative to
+fragmentation). Dashed line: neutral clock, $1/\mu\approx3{,}333$
+generations.
 
 \smallskip
-\noindent\textbf{e}, Paired-arm disconnection experiment ($S=0.02$,
-$\mu=3\times10^{-4}$, $R=200$): one eroding lineage under strong mixing
-(C3) is split at $t^{*}=751$ generations, when the median replicate
-crosses $\bar{x}=0.05$ (dashed line); arm B is then disconnected ($m=0$)
-while arm A remains connected. Curves show the ensemble-mean mutant
-frequency $\bar{x}$ of each arm and the sectoring coefficient $F$ of arm
-B. Median completion time, measured from the start of the experiment:
-$4{,}636$ generations for the connected arm ($198/200$ replicates
-completed) versus $9{,}228$ for the disconnected arm ($163/200$);
-measured from $t^{*}$, $3{,}885$ versus $8{,}477$ generations.
-Disconnection roughly doubles the erosion time ($2.0\times$ from the
-start, $2.2\times$ from $t^{*}$).
+\noindent\textbf{e}, Paired-arm disconnection experiment ($R=200$): one
+eroding lineage under strong mixing is split when the mutant frequency
+reaches a low threshold ($\bar{x}=0.05$; vertical dashed line,
+$t^{*}$); arm B is then disconnected while arm A remains connected.
+Curves: ensemble-mean mutant frequency of each arm (solid) and the
+sectoring coefficient $F$ of arm B (dotted). Disconnection alone
+roughly doubles the erosion time of the same lineage.
+
+\smallskip
+\noindent Together, the panels identify tissue architecture --- not the
+mutation rate, which is held fixed --- as the variable controlling the
+somatic erosion of module integrity: fragmentation confines core-gene
+loss to sectors on which between-compartment selection can act, whereas
+fusion-coupled mixing dilutes that selection and lets the loss spread
+through the tissue as if the network were a single well-mixed
+population. Calibration and rescaling procedures, replicate counts and
+the full parameter tables are archived with the code (see
+Data availability).

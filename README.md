@@ -3,7 +3,7 @@
 This repository contains the individual-based simulations supporting the
 somatic (within-body) channel of module-integrity erosion described in
 the manuscript, together with the generator of the manuscript's
-conceptual landscape figure (Fig. 2, a pure schematic with no simulation
+conceptual landscape figure (Fig. 3, a pure schematic with no simulation
 output). The model follows the irreversible loss-of-function
 mutation of a bottleneck core gene in a mycelial compartment network:
 a 12 × 12 lattice of compartments (periodic boundaries) holding K = 8
@@ -29,10 +29,10 @@ given in the figure captions in `figures/`.
 | Path | Contents |
 | --- | --- |
 | `code/somatic_ibm.py` | Simulation engine (CLI: `calib`, `selresp`, `fixprob`, `erosion`, `disconnect`, `snapshots`, `batch`, `smoke`) |
-| `code/make_figures.py` | Builds the manuscript figures and `somatic_ibm_summary.json` from `data/ibm_results/` |
+| `code/make_figures.py` | Builds the manuscript's simulation figures (Fig. 2 and Supplementary Fig. S1) and `somatic_ibm_summary.json` from `data/ibm_results/` |
 | `code/verify_numbers.py` | Checks every number quoted in the figure captions against `somatic_ibm_summary.json` and the sensitivity summary |
 | `code/sensitivity_scan.py` | One-factor-at-a-time sensitivity scan producing `data/sensitivity/` |
-| `code/make_fig_landscape.py` | Draws the conceptual landscape-continuum figure (Fig. 2); no data dependency |
+| `code/make_fig_landscape.py` | Draws the conceptual landscape-continuum figure (Fig. 3); no data dependency |
 | `data/ibm_results/` | Archived simulation output (45 `.npz` files; key-level dictionary in `data/README.md`) |
 | `data/sensitivity/` | Sensitivity scan output (120 jobs; protocol and result tables in `data/sensitivity/README.md`) |
 | `figures/` | Manuscript figures in editable vector formats (SVG and PDF) with LaTeX caption sources and the numerical summary |
@@ -46,13 +46,13 @@ given in the figure captions in `figures/`.
   (C0) and strongly mixed (C3) architectures. The intermediate
   architectures C1 and C2 exchange rank between selective regimes, so no
   monotone connectivity effect should be inferred from their ordering.
-- Panel a of the main figure is an illustrative schematic; panels b–e
+- Panel a of Fig. 2 is an illustrative schematic; panels b–e
   are simulation output. Panel b displays one representative replicate
   per architecture (the replicate closest to the ensemble-mean burden at
   the common checkpoint t = 1,800); the sectoring statistics quoted in
   its caption are medians across all polymorphic replicates
   (0.02 < x̄ < 0.98) at that checkpoint, with completed or nearly clean
-  replicates excluded and their number reported.
+  replicates excluded (per-level counts in `somatic_ibm_summary.json`).
 - Fixation probabilities are resolved down to two events in R = 50,000
   replicates (4 × 10⁻⁵); conditions with no observed fixation are
   plotted at that detection limit as downward triangles.
@@ -69,7 +69,7 @@ given in the figure captions in `figures/`.
   of every endpoint contrast is preserved in all scanned variants,
   while the multiplicative factors are baseline-specific (see
   "Sensitivity analysis" below).
-- The landscape-continuum figure (Fig. 2) is an illustrative schematic
+- The landscape-continuum figure (Fig. 3) is an illustrative schematic
   with no data dependency: basin positions, depths and widths are
   chosen for legibility, and the topology of its panel b is drawn, not
   measured. In panel b the dashed ring around each node is drawn at the
@@ -106,7 +106,7 @@ first move the `.npz` files out of `data/ibm_results/`, or point
 `--outdir` at an empty directory and copy the results back afterwards.
 `make_figures.py` rebuilds the figures and the numerical summary in
 `figures/` from `data/ibm_results/`; `make_fig_landscape.py` redraws the
-conceptual Fig. 2 (no data input, runs in seconds); `verify_numbers.py`
+conceptual Fig. 3 (no data input, runs in seconds); `verify_numbers.py`
 cross-checks every number quoted in the captions and should print
 `PASS`.
 
@@ -210,10 +210,10 @@ See `data/README.md` for a key-level dictionary of every `.npz` family
 
 ## Figures
 
-Both simulation figures (Fig. 1, Fig. S1) and the conceptual landscape
-figure (Fig. 2) are delivered as editable vector files: SVG, with all
+Both simulation figures (Fig. 2, Fig. S1) and the conceptual landscape
+figure (Fig. 3) are delivered as editable vector files: SVG, with all
 text preserved as editable text objects, and PDF, with embedded Type 42
-(CID TrueType) fonts and text preserved as text. Fig. 2 is drawn at
+(CID TrueType) fonts and text preserved as text. Fig. 3 is drawn at
 exactly 7.2 × 4.05 in (183 mm, double column) without tight cropping, so
 the physical size survives export. Raster PNG previews are regenerable
 by the drawing scripts and are excluded from version control.
@@ -236,3 +236,4 @@ MIT License.
 ```
 
 Citation metadata is also provided in `CITATION.cff`.
+````

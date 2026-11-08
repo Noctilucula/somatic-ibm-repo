@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fig. 2 (Section IV): the continuum of module integrity.
+"""Fig. 3 (Section IV): the continuum of module integrity.
 
 Repository entry point: a pure conceptual schematic with no data
 dependency; run from anywhere with

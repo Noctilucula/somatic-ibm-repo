@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cross-check every number quoted in the two caption .tex files against
+"""Cross-check every number quoted in the caption .tex files against
 somatic_ibm_summary.json (the numbers produced by make_figures.py from
 the archived data in data/ibm_results), and pin the headline sensitivity
 numbers quoted in README.md to data/sensitivity/sensitivity_summary.json.
@@ -26,14 +26,19 @@ def chk(name, cond):
     (ok if cond else bad).append(name)
 
 
-# panel a / c: F_eff and Ne_var rounded
+# panel a / c: calibration constants rounded
 chk("F_eff 0.55/0.41/0.43/0.22",
     [round(lv[k]["F_eff"], 2) for k in ["C0", "C1", "C2", "C3"]]
     == [0.55, 0.41, 0.43, 0.22])
 chk("Ne_var 553/550/508/480",
     [round(lv[k]["Ne_var"]) for k in ["C0", "C1", "C2", "C3"]]
     == [553, 550, 508, 480])
-chk("caption quotes F_eff list", "0.55" in cap and "553" in cap)
+chk("F_struct 1.00/0.76/0.63/0.30",
+    [round(lv[k]["F_struct"], 2) for k in ["C0", "C1", "C2", "C3"]]
+    == [1.00, 0.76, 0.63, 0.30])
+chk("caption quotes F_struct list and defines F",
+    all(s in cap for s in ["1.00", "0.76", "0.63", "0.30"])
+    and "\\mathrm{Var}" in cap)
 
 # panel b: common-checkpoint structure statistics
 LVL4 = ["C0", "C1", "C2", "C3"]
@@ -50,8 +55,8 @@ chk("panel-b F medians monotone and near F_struct",
     all(pb[a]["F_med"] > pb[b_]["F_med"]
         for a, b_ in zip(LVL4, LVL4[1:]))
     and all(abs(pb[k]["F_med"] - lv[k]["F_struct"]) < 0.03 for k in LVL4))
-chk("caption quotes panel-b medians, ns and Supplementary Fig. 1",
-    "0.29" in cap and "n=19" in cap and "Supplementary Fig.~1" in cap)
+chk("caption quotes panel-b checkpoint, 1/K line and Supplementary Fig. 1",
+    "1{,}800" in cap and "1/K" in cap and "Supplementary Fig.~1" in cap)
 
 # panel c: five-fold at S=0.02, detection limit, neutral expectation
 r = S["P_fix"]["C3|S=0.02"]["p"] / S["P_fix"]["C0|S=0.02"]["p"]
@@ -89,9 +94,18 @@ chk("absolute medians A=4636 (198/200), B=9228 (163/200)",
 chk("post-t* medians 3885/8477",
     (round(d["median_A_post"]), round(d["median_B_post"])) == (3885, 8477))
 chk("post-t* ratio > 2", d["median_B_post"] / d["median_A_post"] > 2.0)
-chk("caption quotes 0.05 trigger and both time bases",
-    "0.05" in cap and "3{,}885" in cap and "8{,}477" in cap)
+chk("caption quotes 0.05 trigger and doubling factor",
+    "0.05" in cap and "doubles" in cap)
 chk("neutral clock 1/mu = 3333", round(1 / S["mu"]) == 3333)
+chk("caption describes neutral clock and mutation rate",
+    "neutral clock" in cap and "3{,}333" in cap
+    and "3\\times10^{-4}" in cap)
+chk("caption cites Kimura (1962) for the diffusion reference",
+    "Kimura, 1962" in cap)
+chk("caption points to Data availability",
+    "Data availability" in cap)
+chk("main caption British spelling",
+    "organisation" in cap and "organization" not in cap)
 
 # S1 caption
 chk("S1: R=40, times list, S=0.004",
@@ -99,10 +113,10 @@ chk("S1: R=40, times list, S=0.004",
     and "0.004" in capS)
 
 # final numbering; methodological statements live in the repository
-chk("main caption numbered Fig.~1", "Fig.~1\\,|" in cap)
-chk("no stale Fig.~2 reference in main caption", "Fig.~2" not in cap)
-chk("S1 caption cross-references Fig.~1a", "Fig.~1a" in capS)
-chk("no stale Fig.~2 reference in S1 caption", "Fig.~2" not in capS)
+chk("main caption numbered Fig.~2", "Fig.~2\\,|" in cap)
+chk("no stale Fig.~3 reference in main caption", "Fig.~3" not in cap)
+chk("S1 caption cross-references Fig.~2a", "Fig.~2a" in capS)
+chk("no stale Fig.~3 reference in S1 caption", "Fig.~3" not in capS)
 chk("no [TO-METHODS] marker left", "[TO-METHODS]" not in cap)
 chk("update-rule mechanics moved out of the legend", "replenished" not in cap)
 chk("scope statement moved out of the legend",
@@ -139,27 +153,27 @@ chk("sens: 120-job scan CSV archived",
     sum(1 for _ in open(SEN.replace("sensitivity_summary.json",
                                     "sensitivity_scan.csv"))) == 121)
 
-# Fig. 2 landscape caption (pure schematic: no numbers to cross-check)
+# Fig. 3 landscape caption (pure schematic: no numbers to cross-check)
 flatL = " ".join(capL.split())
-chk("Fig2 caption numbered Fig.~2", "Fig.~2\\,|" in capL)
-chk("Fig2 caption has panels a and b",
+chk("Fig3 caption numbered Fig.~3", "Fig.~3\\,|" in capL)
+chk("Fig3 caption has panels a and b",
     "\\textbf{a}," in capL and "\\textbf{b}," in capL)
-chk("Fig2 caption ring wording (single ring, basin width)",
+chk("Fig3 caption ring wording (single ring, basin width)",
     "a dashed ring whose radius follows the basin width" in flatL)
-chk("Fig2 caption describes all four stages",
+chk("Fig3 caption describes all four stages",
     all(k in flatL for k in ["curved edges", "straighten and vanish",
                             "red crossed dotted line",
                             "only the single deep basin remains"]))
-chk("Fig2 caption British spelling",
+chk("Fig3 caption British spelling",
     "coloured" in capL and "colored" not in capL)
 for f in ["Fig_LandscapeContinuum.svg", "Fig_LandscapeContinuum.pdf"]:
     p = os.path.join(D, f)
-    chk("Fig2 figure present & non-trivial: %s" % f,
+    chk("Fig3 figure present & non-trivial: %s" % f,
         os.path.exists(p) and os.path.getsize(p) > 10000)
 
 # placeholders / leftovers
 for name, txt in [("main caption", cap), ("S1 caption", capS),
-                  ("Fig2 caption", capL)]:
+                  ("Fig3 caption", capL)]:
     for p in ["TODO", "XXX", "【", "____", "placeholder"]:
         chk("%s free of %r" % (name, p), p.lower() not in txt.lower())
 
